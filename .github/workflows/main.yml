@@ -1,0 +1,40 @@
+name: install
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+
+name: Test
+on:
+    workflow_run:
+    workflows: ["Build"]
+    types:
+        - completed
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: npm run test
+
+name: Build
+on:
+    workflow_run:
+    workflows: ["Install"]
+    types:
+        - completed
+        - success
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: npm run build
