@@ -1,9 +1,10 @@
 name: Build
 on:
-  workflow_run:
-  workflows: ["Install"]
-  types:
-    - completed
+    workflow_run:
+    workflows: ["Test"]
+    types:
+        - completed
+        - success
 jobs:
   build:
     runs-on: ubuntu-latest
