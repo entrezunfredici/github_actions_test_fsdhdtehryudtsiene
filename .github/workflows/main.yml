@@ -39,5 +39,4 @@ jobs:
         run: |
           curl -X POST -H "Content-Type: application/json" \
             -d '{"content": "deploy success Bitch ! https://tenor.com/view/rosycheeks-approved-i-approve-well-done-good-job-gif-16996150"}' \
-            
             ${{ secrets.DISCORD_WEBHOOK_URL }}
