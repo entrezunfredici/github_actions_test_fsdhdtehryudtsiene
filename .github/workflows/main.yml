@@ -1,10 +1,10 @@
-name: install
+name: main
 on:
   push:
     branches:
       - main
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -12,27 +12,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-name: Test
-on:
-    workflow_run:
-    workflows: ["Build"]
-    types:
-        - completed
-jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Test
         run: npm run test
 
-name: Build
-on:
-    workflow_run:
-    workflows: ["Install"]
-    types:
-        - completed
-        - success
-jobs:
   build:
     runs-on: ubuntu-latest
     steps:
